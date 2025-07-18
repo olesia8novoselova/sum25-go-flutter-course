@@ -10,6 +10,7 @@ import (
 type Config struct {
 	Env         string
 	Port        string
+	GRPCPort    string
 	DatabaseURL string
 	JWTSecret   string
 	CORSOrigins string
@@ -19,8 +20,9 @@ type Config struct {
 // and fails immediately if any *required* value is missing.
 func Load() *Config {
 	return &Config{
-		Env:  getEnv("ENV", "development"),
-		Port: getEnv("PORT", "8080"),
+		Env:      getEnv("ENV", "development"),
+		Port:     getEnv("PORT", "8080"),
+		GRPCPort: getEnv("GRPC_PORT", "9090"),
 
 		DatabaseURL: getEnvRequired("DATABASE_URL"),
 

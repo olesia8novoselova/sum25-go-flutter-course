@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package wellness;
+
+option go_package = "github.com/timur-harin/sum25-go-flutter-course/backend/pkg/grpc/proto";
+
+service WellnessService {
+  rpc SendMessage(SendMessageRequest) returns (SendMessageResponse);
+  rpc GetMessages(GetMessagesRequest) returns (GetMessagesResponse);
+  rpc GetChatList(GetChatListRequest) returns (GetChatListResponse);
+  rpc StreamMessages(StreamMessagesRequest) returns (stream Message);
+}
+
+message SendMessageRequest {
+  string receiver_id = 1;
+  string text = 2;
+}
+
+message SendMessageResponse {
+  Message message = 1;
+}
+
+message GetMessagesRequest {
+  string friend_id = 1;
+}
+
+message GetMessagesResponse {
+  repeated Message messages = 1;
+}
+
+message GetChatListRequest {
+}
+
+message Friend {
+  string id = 1;
+  string name = 2;
+}
+
+message GetChatListResponse {
+  repeated Friend friends = 1;
+}
+
+message StreamMessagesRequest {
+}
+
+message Message {
+  string id = 1;
+  string sender_id = 2;
+  string receiver_id = 3;
+  string text = 4;
+  int64 created_at = 5;
+}
+

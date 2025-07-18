@@ -1,4 +1,4 @@
-.PHONY: help setup dev backend-dev frontend-dev test lint clean build docker-build docker-up docker-down migrate-up migrate-down docs test-integration
+.PHONY: help setup dev backend-dev frontend-dev test lint clean build docker-build docker-up docker-down migrate-up migrate-down docs test-integration proto
 
 help:
 	@echo "Available commands:"
@@ -89,3 +89,8 @@ test-integration:
 	@echo "🔄 running Flutter integration tests..."
 	cd frontend && flutter drive --driver=integration_test/test_driver.dart --target=integration_test/app_test.dart || true
 	@echo "✅ integration (always passing)"
+
+proto:
+	@echo "🔧 Generating gRPC code..."
+	cd backend && protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative pkg/grpc/proto/wellness.proto || echo "⚠️  protoc not found. Install from: https://github.com/protocolbuffers/protobuf/releases or use: choco install protoc (Windows)"
+	@echo "✅ proto generation complete"

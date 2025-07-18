@@ -63,6 +63,9 @@ func NewRouter(cfg *config.Config) (*gin.Engine, error) {
 			acts.GET("/goal", activity.GetActivityGoal)
 			acts.GET("/today-calories", activity.GetTodayActivityCalories)
 			acts.GET("/activity/weekly", activity.GetWeeklyActivityStats)
+			acts.POST("/schedule/workouts", wellness.AddWorkout)
+			acts.GET("/schedule/workouts", wellness.ListWorkouts)
+			acts.DELETE("/schedule/workouts/:id", wellness.DeleteWorkout)
 		}
 
 		nut := api.Group("/nutrition")
