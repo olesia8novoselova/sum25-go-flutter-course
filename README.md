@@ -1,217 +1,131 @@
-# "Healthy Summer" - Full-Stack Wellness Application
+# Healthy Summer - Full-Stack Wellness Application
 
-**Course**: Summer 2025 Go + Flutter Course  
-**Instructor**: Timur Harin  
-**Grade**: Automatic A (upon successful completion + technical interview)
+A comprehensive wellness platform designed to help users track summer health activities, nutrition, fitness goals, and social wellness in one integrated application.
 
----
+## Tech Stack
 
-## 🛠 Tech Stack
-
-- **Backend**: Go (Gin framework)  
-- **Frontend**: Flutter (Dart)  
-- **Database**: PostgreSQL  
-- **Real-time**: WebSockets  
-- **Containerization**: Docker  
-- **CI/CD**: GitHub Actions  
+- **Backend**: Go (Gin framework)
+- **Frontend**: Flutter (Dart)
+- **Database**: PostgreSQL
+- **Real-time**: WebSockets, gRPC
+- **Containerization**: Docker
+- **CI/CD**: GitHub Actions
 - **Deployment**:
-  - **Backend & Database**: Render.com  
+  - **Backend & Database**: Render.com
   - **Frontend**: GitHub Pages
-- **Authentication**: JWT  
+- **Authentication**: JWT
 
----
+## Features
 
-## 🎯 Project Overview
+### Activity Tracking
 
-Comprehensive **"Healthy Summer"** wellness application that helps users track their summer health activities, nutrition, fitness goals, and social wellness. This project will demonstrate mastery of all course concepts through a real-world, production-ready application.
+- Log various workout types (running, swimming, cycling, yoga, etc.)
+- Automatic calorie calculation based on activity type and duration
+- Step counting with daily goal tracking
+- Activity history with filtering and categorization
+- Weekly and monthly activity summaries with analytics
+- Achievement badges for hitting fitness milestones
 
----
+### Nutrition Management
 
-## 👥 Core Features & User Stories
+- Log meals with food items, quantities, and nutritional information
+- Search integrated food database
+- Daily calorie tracking with customizable goals
+- Water intake logging with hydration reminders
+- Nutrition analytics with weekly reports and insights
+- Personalized recommendations based on activity and intake
 
-### 1. Activity Tracking System
+### Social & Community
 
-#### Use Case: Daily Workout Logging
-**User Story**: As a fitness enthusiast, I want to log my daily workouts so that I can track my progress and maintain consistency.
-
-**Acceptance Criteria**:
-- User can add new activities (running, swimming, cycling, yoga, etc.)
-- Each activity includes: type, duration, intensity, calories burned, location
-- Activities are timestamped and categorized
-- User can view activity history with filtering options
-- Real-time calorie calculation based on activity type and duration
-
-#### Use Case: Step Counting Integration
-**User Story**: As a user, I want my daily steps to be automatically tracked so I can see my overall activity level.
-
-**Acceptance Criteria**:
-- Integration with device step counter (simulated for demo)
-- Daily step goals with progress tracking
-- Weekly and monthly step summaries
-- Achievement badges for step milestones
-
-### 2. Nutrition Management System
-
-#### Use Case: Meal Planning & Logging
-**User Story**: As a health-conscious user, I want to plan and log my meals so I can maintain a balanced diet during summer.
-
-**Acceptance Criteria**:
-- Add meals with food items, quantities, and nutritional values
-- Search food database with nutritional information
-- Daily calorie tracking with goal setting
-- Water intake tracking with reminders
-- Weekly nutrition reports and insights
-
-#### Use Case: Water Intake Tracking
-**User Story**: As a user, I want to track my daily water intake so I can stay hydrated during hot summer days.
-
-**Acceptance Criteria**:
-- Log water consumption with timestamps
-- Daily water intake goals (customizable)
-- Hydration reminders throughout the day
-- Weekly hydration reports
-
-### 3. Social Wellness Features
-
-#### Use Case: Friend Connections
-**User Story**: As a social user, I want to connect with friends so we can motivate each other and share our health journey.
-
-**Acceptance Criteria**:
-- Send and accept friend requests
+- Friend connections and friend request system
 - View friends' public activity feeds
-- Share achievements and milestones
+- Real-time activity notifications
 - Private messaging between friends
+- Create and join group fitness challenges
+- Live leaderboards for friendly competition
+- Share achievements and milestones with community
 
-#### Use Case: Group Challenges
-**User Story**: As a competitive user, I want to participate in group challenges so I can stay motivated and have fun with friends.
+### Analytics & Insights
 
-**Acceptance Criteria**:
-- Create and join group challenges
-- Challenge types: step count, workout frequency, nutrition goals
-- Real-time leaderboards
-- Challenge completion rewards and badges
+- Comprehensive personal dashboard with health metrics
+- Visual progress tracking (calorie burn vs. intake charts)
+- Goal setting and progress monitoring
+- Achievement system with badges and rewards
+- Real-time notifications for goals, challenges, and friend activities
+- Personalized health insights and recommendations
 
-### 4. Progress Analytics & Insights
+## Architecture
 
-#### Use Case: Personal Dashboard
-**User Story**: As a user, I want to see my health progress in one place so I can understand my patterns and stay motivated.
+The backend is built using a modular microservice design with four core services:
 
-**Acceptance Criteria**:
-- Weekly and monthly activity summaries
-- Calorie burn vs. intake charts
-- Progress towards fitness goals
-- Achievement badges and milestones
-- Personalized insights and recommendations
+- **User Service**: Authentication, profile management, friend connections, achievements
+- **Activity Service**: Workout logging, step tracking, calorie calculations, activity analytics
+- **Nutrition Service**: Meal planning, food database, water tracking, nutrition analytics
+- **Social Service**: Real-time messaging, challenges, activity feeds, notifications
 
-#### Use Case: Goal Setting & Tracking
-**User Story**: As a goal-oriented user, I want to set and track health goals so I can measure my progress and celebrate achievements.
+## Getting Started
 
-**Acceptance Criteria**:
-- Set SMART goals (Specific, Measurable, Achievable, Relevant, Time-bound)
-- Goal categories: fitness, nutrition, social, wellness
-- Progress tracking with visual indicators
-- Goal completion celebrations and rewards
+### Prerequisites
 
-### 5. Real-time Features
+- Go 1.21+
+- Flutter 3.0+
+- PostgreSQL 14+
+- Docker (optional)
 
-#### Use Case: Live Activity Feed
-**User Story**: As a social user, I want to see my friends' activities in real-time so I can stay connected and motivated.
+### Backend Setup
 
-**Acceptance Criteria**:
-- Real-time activity updates from friends
-- Live notifications for achievements
-- Instant messaging between friends
-- Real-time challenge leaderboards
-
-#### Use Case: Push Notifications
-**User Story**: As a busy user, I want to receive timely reminders so I don't forget to stay active and hydrated.
-
-**Acceptance Criteria**:
-- Hydration reminders throughout the day
-- Workout schedule reminders
-- Goal milestone notifications
-- Friend activity notifications
-- Challenge deadline reminders
-
----
-
-## 🏗 Technical Architecture
-
-### Microservices Design (4 Services)
-
-#### 1. User Service
-**Responsibilities**:
-- User authentication and authorization
-- Profile management
-- Friend connections
-- Achievement system
-
-**Key Endpoints**:
-```
-POST   /api/users/register
-POST   /api/users/login
-GET    /api/users/profile
-PUT    /api/users/profile
-POST   /api/users/friends/request
-GET    /api/users/friends
-POST   /api/users/achievements
-```
-
-#### 2. Activity Service
-**Responsibilities**:
-- Activity logging and tracking
-- Step counting integration
-- Calorie calculations
-- Activity analytics
-
-**Key Endpoints**:
-```
-POST   /api/activities
-GET    /api/activities
-GET    /api/activities/stats
-POST   /api/activities/steps
-GET    /api/activities/analytics
-```
-
-#### 3. Nutrition Service
-**Responsibilities**:
-- Meal planning and logging
-- Food database management
-- Water intake tracking
-- Nutrition analytics
-
-**Key Endpoints**:
-```
-POST   /api/meals
-GET    /api/meals
-POST   /api/water
-GET    /api/nutrition/stats
-GET    /api/foods/search
-```
-
-#### 4. Social Service
-**Responsibilities**:
-- Real-time messaging
-- Group challenges
-- Social feed
-- Notifications
-
-**Key Endpoints**:
-```
-POST   /api/challenges
-GET    /api/challenges
-POST   /api/messages
-GET    /api/messages
-GET    /api/feed
-```
-
-### Project Setup
 ```bash
-# Clone and setup
-git clone https://github.com/your-username/sum25-go-flutter-course.git
-cd sum25-go-flutter-course
-make setup
+cd backend
+go mod download
+go run cmd/server/main.go
+```
 
-# Start development environment
-make dev
+### Frontend Setup
+
+```bash
+cd frontend
+flutter pub get
+flutter run
+```
+
+### Using Docker
+
+```bash
+docker-compose up
+```
+
+## Project Structure
+
+```
+backend/
+├── cmd/          # Application entry points
+├── internal/     # Core application code (handlers, services, models)
+├── pkg/          # Shared packages (auth, database, gRPC)
+├── migrations/   # Database migration files
+└── tests/        # Integration tests
+
+frontend/         # Flutter frontend application
+├── lib/          # Main application code (screens, services, models)
+├── test/         # Unit and integration tests
+└── web/          # Web deployment configuration
+```
+
+## API Documentation
+
+The backend exposes RESTful endpoints organized by service:
+
+**User Service**: `/api/users/*` - registration, login, profiles, friends  
+**Activity Service**: `/api/activities/*` - workout logging, steps, analytics  
+**Nutrition Service**: `/api/meals/*`, `/api/water/*` - meal and hydration tracking  
+**Social Service**: `/api/challenges/*`, `/api/messages/*`, `/api/feed/*` - social features
+
+## Development
+
+Use the provided Makefile for common development tasks:
+
+```bash
+make help        # View available commands
+make build       # Build both frontend and backend
+make test        # Run all tests
+make migrate     # Run database migrations
 ```
